@@ -1,0 +1,42 @@
+
+
+How to run the REST API:
+
+No blanks can be entered, so when submitting a top school name, spaces should be substituted with ‘_’ character:
+Available years to query:
+2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990, 1989, 1987
+For queries that can be run for all schools or all years, as described below, user should simply enter “ALL” or “all”.
+
+To BEGIN, user must obtain the list of top schools:
+curl http://ec2-54-87-186-104.compute-1.amazonaws.com:8080/topschools
+
+From there the user can execute the following queries to view donation patterns for graduates of these top schools:
+
+View Top 10 donations by graduates of a specific school or across all schools:
+
+curl http://ec2-54-87-186-104.compute-1.amazonaws.com:8080/donations/all
+curl http://ec2-54-87-186-104.compute-1.amazonaws.com:8080/donations/University_of_Chicago
+
+
+View Top 10 donations made by a specific graduate. 
+The graduate must have appeared in a prior result, and the request is submitted using the gradid (numeric) as below. The results show to where the grad made donations, either individual candidates or organizations, and do not show party affiliation because organizations in littlesis do not have an associated party.
+
+curl http://ec2-54-87-186-104.compute-1.amazonaws.com:8080/donations/<gradid>  
+
+View Top 10 connections of a specific graduate, excluding connections that involve donations. 
+These include position, memberships, family members
+
+curl http://ec2-54-87-186-104.compute-1.amazonaws.com:8080/connections/<gradid>  
+
+View Donation Summaries:
+This query can be run 4 different ways:
+1)	all schools, all years
+2)	all schools, specific year
+3)	specific school, all years
+4)	specific school, specific year
+
+curl http://ec2-54-87-186-104.compute-1.amazonaws.com:8080/donationsummaries/<topschool>/<year>
+
+
+
+
